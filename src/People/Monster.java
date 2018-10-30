@@ -1,4 +1,5 @@
 package People;
 
-public class Monster {
+public class Monster
+{
 }
