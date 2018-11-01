@@ -3,6 +3,7 @@ package Game;
 import People.Person;
 import Rooms.NormalRoom;
 import Rooms.WinningRoom;
+import Board.Board;
 
 import java.util.Scanner;
 
@@ -13,6 +14,13 @@ public class Runner {
 
     public static void main(String[] args)
     {
+        System.out.println("");
+        String[][] hi = new String[5][5];
+        Board haunt = new Board(hi);
+
+        haunt.fill("");
+        System.out.println(haunt);
+
         NormalRoom[][] building = new NormalRoom[5][5];
 
         //Fill the building with normal rooms
