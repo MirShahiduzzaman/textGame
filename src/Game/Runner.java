@@ -14,23 +14,23 @@ public class Runner {
 
     public static void main(String[] args)
     {
-        System.out.println("");
-        String[][] hi = new String[5][5];
-        Board haunt = new Board(hi);
+        System.out.println("Hello player, you will soon play a game of horror and mystery. In this game, your goal is to get to the exit, which will be marked on the map. \n");
 
-        haunt.fill("");
-        System.out.println(haunt);
 
-        NormalRoom[][] building = new NormalRoom[5][5];
+        System.out.println("Before we start, please enter the difficulty you want for this game.\n 1 easy\n 2 medium\n 3 hard");
 
-        //Fill the building with normal rooms
-        for (int x = 0; x<building.length; x++)
+        NormalRoom[][] mansion = new NormalRoom[5][5];
+        Board haunt = new Board(mansion);
+
+        for (int x = 0; x<mansion.length; x++)
         {
-            for (int y = 0; y < building[x].length; y++)
+            for (int y = 0; y < mansion[x].length; y++)
             {
-                building[x][y] = new NormalRoom(x,y);
+                mansion[x][y] = new NormalRoom(x,y);
             }
         }
+
+        System.out.println(haunt);
 
         //Create a random winning room.
         int x = (int)(Math.random()*building.length);
