@@ -3,7 +3,7 @@ package Rooms;
 import Game.Runner;
 import People.Person;
 
-public class WinningRoom extends NormalRoom
+public class WinningRoom extends Room
 {
 
     public WinningRoom(int x, int y) {
@@ -23,6 +23,12 @@ public class WinningRoom extends NormalRoom
         x.setyLoc(this.yLoc);
         System.out.println("You found the winning room! Ten points for Gryffindor.");
         Runner.gameOff();
+    }
+
+    @Override
+    public String toString()
+    {
+        return("WIN");
     }
 
 }

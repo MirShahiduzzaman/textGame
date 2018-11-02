@@ -2,11 +2,11 @@ package Rooms;
 
 import People.Person;
 
-public class NormalRoom {
+public class Room {
     Person occupant;
     int xLoc,yLoc;
 
-    public NormalRoom(int x, int y)
+    public Room(int x, int y)
     {
         xLoc = x;
         yLoc = y;
@@ -31,6 +31,12 @@ public class NormalRoom {
     public void leaveRoom(Person x)
     {
         occupant = null;
+    }
+
+    @Override
+    public String toString()
+    {
+        return("NR");
     }
 
 }

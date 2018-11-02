@@ -1,38 +1,47 @@
 package Board;
 
+
+import Rooms.Room;
+
 public class Board
 {
-    String[][] chessBoard;
+    private Room[][] map;
     String showBoard = "";
 
-    public Board(String[][] chessBoard)
+    boolean s;
+
+    public Board(Room[][] map)
     {
-        this.chessBoard = chessBoard;
+        this.map = map;
     }
 
-    /**
-     * fills in the private array chessBoard with a string
-     * @param str string that will fill in all spaces in chessBoard
-     */
-    public void fill(java.lang.String str)
+    public Board(int height,int width)
     {
-        for(int i = 0;i<this.chessBoard.length;i++)
-        {
-            for(int a = 0;a<this.chessBoard[i].length;a++)
-            {
-                chessBoard[i][a] = str;
-            }
-        }
+        map = new Room[height][width];
+    }
+
+    public void addRoom(int row,int column,Room r)
+    {
+        map[row][column] = r;
+    }
+
+    public void changeS()
+    {
+        s =false;
     }
 
     @Override
     public String toString()
     {
-        for(int i = 0;i<chessBoard.length;i++)
+        for(int i = 0;i<map.length;i++)
         {
-            for(int a = 0;a<chessBoard[i].length;a++)
+            for(int a = 0;a<map[i].length;a++)
             {
-                showBoard += "{ " + chessBoard[i][a] + " }";
+                if(!s)
+                {
+                    showBoard += "wow";
+                }
+                showBoard += "{ " + map[i][a] + " }";
             }
             showBoard += "\n";
         }

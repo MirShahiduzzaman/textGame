@@ -1,7 +1,7 @@
 package Game;
 
 import People.Person;
-import Rooms.NormalRoom;
+import Rooms.Room;
 import Rooms.WinningRoom;
 import Board.Board;
 
@@ -19,19 +19,27 @@ public class Runner {
 
         System.out.println("Before we start, please enter the difficulty you want for this game.\n 1 easy\n 2 medium\n 3 hard");
 
-        NormalRoom[][] mansion = new NormalRoom[5][5];
+        //detect answer
+        //use answer for dimensions
+
+        Room[][] mansion = new Room[5][5];
         Board haunt = new Board(mansion);
 
         for (int x = 0; x<mansion.length; x++)
         {
             for (int y = 0; y < mansion[x].length; y++)
             {
-                mansion[x][y] = new NormalRoom(x,y);
+                haunt.addRoom(y,x,new Room(y,x));
             }
         }
 
+        haunt.addRoom(mansion[0].length-1,mansion.length-1,new WinningRoom(mansion.length,mansion.length));
+
+
+
         System.out.println(haunt);
 
+        /**
         //Create a random winning room.
         int x = (int)(Math.random()*building.length);
         int y = (int)(Math.random()*building.length);
@@ -56,7 +64,7 @@ public class Runner {
 
 
         }
-        in.close();
+        in.close();*/
     }
 
     /**
@@ -66,7 +74,7 @@ public class Runner {
      * @param map the 2D array of rooms
      * @return
      */
-    public static boolean validMove(String move, Person p, NormalRoom[][] map)
+    public static boolean validMove(String move, Person p, Room[][] map)
     {
         move = move.toLowerCase().trim();
         switch (move) {
