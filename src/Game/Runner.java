@@ -1,3 +1,4 @@
+/**Mir Shahiduzzaman November 5*/
 package Game;
 
 import People.Person;
@@ -15,18 +16,20 @@ public class Runner {
 
     public static void main(String[] args)
     {
-        int row = 5;
-        int column = 5;
+        int row = 0;
+        int column = 0;
 
-        System.out.println("Hello player, you will soon play a game of horror and mystery. In this game, your goal is to get to the exit, which will be marked on the map. \n");
+        //Scanner start = new Scanner(System.in);
 
-        //Scanner in = new Scanner(System.in);
+        System.out.println("Hello player, you will soon play a game of horror. In this game, your goal is to get to the exit, which will be marked on the map. Press any key to begin.");
+        //String begin = start.nextLine();
+        //start.close();
+        Scanner fin = new Scanner(System.in);
 
         System.out.println("Before we start, please enter the difficulty you want for this game.\n 1 easy\n 2 medium\n 3 hard");
-
-        /**while(row == 0)
+        while(row == 0)
         {
-            String diff = in.nextLine();
+            String diff = fin.nextLine();
             if (diff.equals("1") || diff.equals("one") || diff.equals("easy") || diff.equals("e"))
             {
                 row = 5;
@@ -46,10 +49,14 @@ public class Runner {
                         row = 7;
                         column = 7;
                     }
+                    else
+                    {
+                        System.out.println("Please choose a difficulty");
+                    }
                 }
             }
-        }*/
-        //in.close();
+        }
+
         //detect answer
         //use answer for dimensions
 
@@ -60,7 +67,7 @@ public class Runner {
         {
             for (int y = 0; y < mansion[x].length; y++)
             {
-                haunt.addRoom(y,x,new Room(x,y));
+                haunt.addRoom(x,y,new Room(x,y));
             }
         }
 
@@ -73,19 +80,20 @@ public class Runner {
         int x = (int)(Math.random()*building.length);
         int y = (int)(Math.random()*building.length);
         building[x][y] = new WinningRoom(x, y);
+        */
 
         //Setup player 1 and the input scanner
         Person player1 = new Person("FirstName", "FamilyName", 0,0);
-        building[0][0].enterRoom(player1);
+        mansion[0][0].enterRoom(player1);
         Scanner in = new Scanner(System.in);
         while(gameOn)
         {
             System.out.println("Where would you like to move? (Choose N, S, E, W)");
             String move = in.nextLine();
-            if(validMove(move, player1, building))
+            if(validMove(move, player1, mansion))
             {
-                System.out.println("Your coordnates: row = " + player1.getxLoc() + " col = " + player1.getyLoc());
-
+                System.out.println(haunt);
+                System.out.println("Your coordinates: row = " + player1.getxLoc() + " col = " + player1.getyLoc());
             }
             else {
                 System.out.println("Please choose a valid move.");
@@ -93,7 +101,7 @@ public class Runner {
 
 
         }
-        in.close();*/
+        in.close();
     }
 
     /**

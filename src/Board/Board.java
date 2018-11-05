@@ -1,13 +1,11 @@
+/**Mir Shahiduzzaman November 5*/
 package Board;
-
 
 import Rooms.Room;
 
 public class Board
 {
     private Room[][] map;
-    String showBoard = "";
-
     //maybe use boolean to change room status and maybe set it up in the room class!!
 
     public Board(Room[][] map)
@@ -28,6 +26,7 @@ public class Board
     @Override
     public String toString()
     {
+        String showBoard = "";
         for(int i = 0;i<map.length;i++)
         {
             for(int a = 0;a<map[i].length;a++)

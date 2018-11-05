@@ -1,6 +1,6 @@
+/**Mir Shahiduzzaman November 5*/
 package Rooms;
 
-import Game.Runner;
 import People.Person;
 
 public class BedRoom extends Room
