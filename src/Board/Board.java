@@ -8,7 +8,7 @@ public class Board
     private Room[][] map;
     String showBoard = "";
 
-    boolean s;
+    //maybe use boolean to change room status and maybe set it up in the room class!!
 
     public Board(Room[][] map)
     {
@@ -25,11 +25,6 @@ public class Board
         map[row][column] = r;
     }
 
-    public void changeS()
-    {
-        s =false;
-    }
-
     @Override
     public String toString()
     {
@@ -37,10 +32,6 @@ public class Board
         {
             for(int a = 0;a<map[i].length;a++)
             {
-                if(!s)
-                {
-                    showBoard += "wow";
-                }
                 showBoard += "{ " + map[i][a] + " }";
             }
             showBoard += "\n";

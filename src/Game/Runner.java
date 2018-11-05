@@ -1,6 +1,7 @@
 package Game;
 
 import People.Person;
+import Rooms.BedRoom;
 import Rooms.Room;
 import Rooms.WinningRoom;
 import Board.Board;
@@ -14,29 +15,57 @@ public class Runner {
 
     public static void main(String[] args)
     {
+        int row = 5;
+        int column = 5;
+
         System.out.println("Hello player, you will soon play a game of horror and mystery. In this game, your goal is to get to the exit, which will be marked on the map. \n");
 
+        //Scanner in = new Scanner(System.in);
 
         System.out.println("Before we start, please enter the difficulty you want for this game.\n 1 easy\n 2 medium\n 3 hard");
 
+        /**while(row == 0)
+        {
+            String diff = in.nextLine();
+            if (diff.equals("1") || diff.equals("one") || diff.equals("easy") || diff.equals("e"))
+            {
+                row = 5;
+                column = 5;
+            }
+            else
+            {
+                if (diff.equals("2") || diff.equals("two") || diff.equals("medium") || diff.equals("m"))
+                {
+                    row = 6;
+                    column = 6;
+                }
+                else
+                {
+                    if (diff.equals("3") || diff.equals("three") || diff.equals("hard") || diff.equals("h"))
+                    {
+                        row = 7;
+                        column = 7;
+                    }
+                }
+            }
+        }*/
+        //in.close();
         //detect answer
         //use answer for dimensions
 
-        Room[][] mansion = new Room[5][5];
+        Room[][] mansion = new Room[row][column];
         Board haunt = new Board(mansion);
 
         for (int x = 0; x<mansion.length; x++)
         {
             for (int y = 0; y < mansion[x].length; y++)
             {
-                haunt.addRoom(y,x,new Room(y,x));
+                haunt.addRoom(y,x,new Room(x,y));
             }
         }
 
-        haunt.addRoom(mansion[0].length-1,mansion.length-1,new WinningRoom(mansion.length,mansion.length));
-
-
-
+        haunt.addRoom(mansion[0].length-1,mansion.length-1,new WinningRoom(mansion.length-1,mansion.length-1));
+        haunt.addRoom(0,0,new BedRoom(0,0));
         System.out.println(haunt);
 
         /**
