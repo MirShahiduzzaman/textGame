@@ -50,7 +50,7 @@ public class Runner {
                     }
                     else
                     {
-                        System.out.println("Please choose a difficulty");
+                        System.out.println("Please choose a valid difficulty (easy, medium, or hard).");
                     }
                 }
             }
@@ -85,31 +85,112 @@ public class Runner {
         Person player1 = new Person("FirstName", "FamilyName", 0,0);
         Monster horseman = new Monster("Mad","Horseman",1,1);
         mansion[0][0].enterRoom(player1);
-        mansion[1][1].enterRoom(horseman);
+        mansion[2][2].enterRoom(horseman);
         Scanner in = new Scanner(System.in);
+        int counter;
+        int temp;
+        String choice;
+
         while(gameOn)
         {
             //counts distance from player and uses it to decide on a way to go
-            int counter = 0;
+            counter = 0;
+            temp = 0;
+            choice = "";
 
-            System.out.println("Where would you like to move? (Choose N, S, E, W)");
+            System.out.println("Where would you like to move? (Choose W, A, S, D)");
             String move = in.nextLine();
             if(validMove(move, player1, mansion))
             {
-                //find out which space is closer to player
-                //CHECK SPACES DONT NEED TO MAKE SEPARATE CLASS
+                if(validMove("ne",horseman,mansion))
+                {
+                    //map[p.getxLoc()-1][p.getyLoc()+1].enterRoom(p);
+                    counter = Math.abs(horseman.getxLoc()-1 - player1.getxLoc());
+                    counter += Math.abs(horseman.getyLoc()+1 - player1.getyLoc());
+                    choice = "ne";
+                }
+                if(validMove("nw",horseman,mansion))
+                {
+                    //map[p.getxLoc()-1][p.getyLoc()-1].enterRoom(p);
+                    temp = Math.abs(horseman.getxLoc()-1 - player1.getxLoc());
+                    temp += Math.abs(horseman.getyLoc()-1 - player1.getyLoc());
 
-                //FIRST check north and south
-                //THEN check east or west
+                    if(temp<counter)
+                    {
+                        counter = temp;
+                        choice = "nw";
+                    }
+                }
+                if(validMove("se",horseman,mansion))
+                {
+                    //map[p.getxLoc()+1][p.getyLoc()+1].enterRoom(p);
+                    temp = Math.abs(horseman.getxLoc()+1 - player1.getxLoc());
+                    temp += Math.abs(horseman.getyLoc()+1 - player1.getyLoc());
+
+                    if(temp<counter)
+                    {
+                        counter = temp;
+                        choice = "se";
+                    }
+                }
+                if(validMove("sw",horseman,mansion))
+                {
+                    //map[p.getxLoc()+1][p.getyLoc()-1].enterRoom(p);
+                    temp = Math.abs(horseman.getxLoc()+1 - player1.getxLoc());
+                    temp += Math.abs(horseman.getyLoc()-1 - player1.getyLoc());
+
+                    if(temp<counter)
+                    {
+                        choice = "sw";
+                    }
+                }
+
+                mansion[horseman.getxLoc()][horseman.getyLoc()].leaveRoom(horseman);
+                if(choice.equals("ne"))
+                {
+                    mansion[horseman.getxLoc()-1][horseman.getyLoc()+1].enterRoom(horseman);
+                }
+                if(choice.equals("nw"))
+                {
+                    mansion[horseman.getxLoc()-1][horseman.getyLoc()-1].enterRoom(horseman);
+                }
+                if(choice.equals("se"))
+                {
+                    mansion[horseman.getxLoc()+1][horseman.getyLoc()+1].enterRoom(horseman);
+                }
+                if(choice.equals("sw"))
+                {
+                    mansion[horseman.getxLoc()+1][horseman.getyLoc()-1].enterRoom(horseman);
+                }
+
+                mansion[player1.getxLoc()][player1.getyLoc()].leaveRoom(player1);
+
+                move = move.toLowerCase().trim();
+                if(move.equals("w"))
+                {
+                    mansion[player1.getxLoc()-1][player1.getyLoc()].enterRoom(player1);
+                }
+                if(move.equals("d"))
+                {
+                    mansion[player1.getxLoc()][player1.getyLoc() + 1].enterRoom(player1);
+
+                }
+                if(move.equals("s"))
+                {
+                    mansion[player1.getxLoc()+1][player1.getyLoc()].enterRoom(player1);
+                }
+                if(move.equals("a"))
+                {
+                    mansion[player1.getxLoc()][player1.getyLoc()-1].enterRoom(player1);
+                }
 
                 System.out.println(haunt);
                 System.out.println("Your coordinates: row = " + player1.getxLoc() + " col = " + player1.getyLoc());
             }
-            else {
+            else
+            {
                 System.out.println("Please choose a valid move.");
             }
-
-
         }
         in.close();
     }
@@ -126,22 +207,18 @@ public class Runner {
     {
         move = move.toLowerCase().trim();
         switch (move) {
-            case "n":
+            case "w":
                 if (p.getxLoc() > 0)
                 {
-                    map[p.getxLoc()][p.getyLoc()].leaveRoom(p);
-                    map[p.getxLoc()-1][p.getyLoc()].enterRoom(p);
                     return true;
                 }
                 else
                 {
                     return false;
                 }
-            case "e":
+            case "d":
                 if (p.getyLoc()< map[p.getyLoc()].length -1)
                 {
-                    map[p.getxLoc()][p.getyLoc()].leaveRoom(p);
-                    map[p.getxLoc()][p.getyLoc() + 1].enterRoom(p);
                     return true;
                 }
                 else
@@ -152,8 +229,6 @@ public class Runner {
             case "s":
                 if (p.getxLoc() < map.length - 1)
                 {
-                    map[p.getxLoc()][p.getyLoc()].leaveRoom(p);
-                    map[p.getxLoc()+1][p.getyLoc()].enterRoom(p);
                     return true;
                 }
                 else
@@ -161,11 +236,9 @@ public class Runner {
                     return false;
                 }
 
-            case "w":
+            case "a":
                 if (p.getyLoc() > 0)
                 {
-                    map[p.getxLoc()][p.getyLoc()].leaveRoom(p);
-                    map[p.getxLoc()][p.getyLoc()-1].enterRoom(p);
                     return true;
                 }
                 else
@@ -179,8 +252,6 @@ public class Runner {
                 {
                     if (p.getxLoc() > 0 && p.getyLoc()< map[p.getyLoc()].length -1)
                     {
-                        map[p.getxLoc()][p.getyLoc()].leaveRoom(p);
-                        //map[p.getxLoc()-1][p.getyLoc()+1].enterRoom(p);
                         return true;
                     }
                     else
@@ -197,8 +268,6 @@ public class Runner {
                 {
                     if (p.getxLoc() > 0 && p.getyLoc() > 0)
                     {
-                        map[p.getxLoc()][p.getyLoc()].leaveRoom(p);
-                        //map[p.getxLoc()-1][p.getyLoc()-1].enterRoom(p);
                         return true;
                     }
                     else
@@ -215,8 +284,6 @@ public class Runner {
                 {
                     if (p.getxLoc() < map.length - 1 && p.getyLoc()< map[p.getyLoc()].length -1)
                     {
-                        map[p.getxLoc()][p.getyLoc()].leaveRoom(p);
-                        //map[p.getxLoc()+1][p.getyLoc()+1].enterRoom(p);
                         return true;
                     }
                     else
@@ -233,8 +300,6 @@ public class Runner {
                 {
                     if (p.getxLoc() < map.length - 1 && p.getyLoc() > 0)
                     {
-                        map[p.getxLoc()][p.getyLoc()].leaveRoom(p);
-                        //map[p.getxLoc()+1][p.getyLoc()-1].enterRoom(p);
                         return true;
                     }
                     else
