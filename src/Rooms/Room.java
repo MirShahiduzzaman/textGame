@@ -1,6 +1,7 @@
 /**Mir Shahiduzzaman November 5*/
 package Rooms;
 
+import People.Monster;
 import People.Person;
 
 public class Room {
@@ -20,8 +21,19 @@ public class Room {
      */
     public void enterRoom(Person x)
     {
-        System.out.println("You enter a plain old room");
-        occupant = x;
+        if(!(x instanceof Monster))
+        {
+            System.out.println("You enter a plain old room");
+        }
+        if(occupant == null)
+        {
+            occupant = x;
+        }
+        else
+        {
+            System.out.println("YOU LOSE");
+            System.exit(0);
+        }
         strOccupant = x + "";
         x.setxLoc(this.xLoc);
         x.setyLoc(this.yLoc);
@@ -33,8 +45,8 @@ public class Room {
      */
     public void leaveRoom(Person x)
     {
-        strOccupant = null;
         occupant = null;
+        strOccupant = null;
     }
 
     @Override
@@ -42,7 +54,14 @@ public class Room {
     {
         if(!(strOccupant==null))
         {
-            return("P");
+            if(occupant instanceof Monster)
+            {
+                return("M");
+            }
+            else
+            {
+                return("P");
+            }
         }
         return("NR");
     }

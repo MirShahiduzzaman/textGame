@@ -1,6 +1,7 @@
 /**Mir Shahiduzzaman November 5*/
 package Game;
 
+import People.Monster;
 import People.Person;
 import Rooms.BedRoom;
 import Rooms.Room;
@@ -82,7 +83,9 @@ public class Runner {
 
         //Setup player 1 and the input scanner
         Person player1 = new Person("FirstName", "FamilyName", 0,0);
+        Monster horseman = new Monster("Mad","Horseman",1,1);
         mansion[0][0].enterRoom(player1);
+        mansion[1][1].enterRoom(horseman);
         Scanner in = new Scanner(System.in);
         while(gameOn)
         {
@@ -107,7 +110,7 @@ public class Runner {
      * @param move the move chosen
      * @param p person moving
      * @param map the 2D array of rooms
-     * @return
+     * @return true if player input a valid move; false if player input is invalid
      */
     public static boolean validMove(String move, Person p, Room[][] map)
     {
