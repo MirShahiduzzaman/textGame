@@ -25,10 +25,6 @@ public class BedRoom extends Room
     @Override
     public String toString()
     {
-        if(!(strOccupant==null))
-        {
-            return("P");
-        }
         return("BED");
     }
 }

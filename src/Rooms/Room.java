@@ -8,6 +8,7 @@ public class Room {
     String strOccupant;
     Person occupant;
     int xLoc,yLoc;
+    boolean enter;
 
     public Room(int x, int y)
     {
@@ -23,6 +24,7 @@ public class Room {
     {
         if(!(x instanceof Monster))
         {
+            enter = true;
             System.out.println("You enter a plain old room");
         }
         if(occupant == null)
@@ -31,7 +33,7 @@ public class Room {
         }
         else
         {
-            System.out.println("YOU LOSE");
+            System.out.println("THE MAD HORSEMAN CAUGHT YOU! TRY AGAIN.");
             System.exit(0);
         }
         strOccupant = x + "";
@@ -63,7 +65,13 @@ public class Room {
                 return("P");
             }
         }
-        return("NR");
+        if(enter)
+        {
+          return("NR");
+        }
+        else {
+            return ("??");
+        }
     }
 
 }

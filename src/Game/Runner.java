@@ -89,10 +89,19 @@ public class Runner {
         Scanner in = new Scanner(System.in);
         while(gameOn)
         {
+            //counts distance from player and uses it to decide on a way to go
+            int counter = 0;
+
             System.out.println("Where would you like to move? (Choose N, S, E, W)");
             String move = in.nextLine();
             if(validMove(move, player1, mansion))
             {
+                //find out which space is closer to player
+                //CHECK SPACES DONT NEED TO MAKE SEPARATE CLASS
+
+                //FIRST check north and south
+                //THEN check east or west
+
                 System.out.println(haunt);
                 System.out.println("Your coordinates: row = " + player1.getxLoc() + " col = " + player1.getyLoc());
             }
@@ -104,6 +113,7 @@ public class Runner {
         }
         in.close();
     }
+
 
     /**
      * Checks that the movement chosen is within the valid game map.
@@ -162,11 +172,87 @@ public class Runner {
                 {
                     return false;
                 }
+
+            //Monster commands
+            case "ne":
+                if(p instanceof Monster)
+                {
+                    if (p.getxLoc() > 0 && p.getyLoc()< map[p.getyLoc()].length -1)
+                    {
+                        map[p.getxLoc()][p.getyLoc()].leaveRoom(p);
+                        //map[p.getxLoc()-1][p.getyLoc()+1].enterRoom(p);
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            case "nw":
+                if(p instanceof Monster)
+                {
+                    if (p.getxLoc() > 0 && p.getyLoc() > 0)
+                    {
+                        map[p.getxLoc()][p.getyLoc()].leaveRoom(p);
+                        //map[p.getxLoc()-1][p.getyLoc()-1].enterRoom(p);
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            case "se":
+                if(p instanceof Monster)
+                {
+                    if (p.getxLoc() < map.length - 1 && p.getyLoc()< map[p.getyLoc()].length -1)
+                    {
+                        map[p.getxLoc()][p.getyLoc()].leaveRoom(p);
+                        //map[p.getxLoc()+1][p.getyLoc()+1].enterRoom(p);
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            case "sw":
+                if(p instanceof Monster)
+                {
+                    if (p.getxLoc() < map.length - 1 && p.getyLoc() > 0)
+                    {
+                        map[p.getxLoc()][p.getyLoc()].leaveRoom(p);
+                        //map[p.getxLoc()+1][p.getyLoc()-1].enterRoom(p);
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            //Monster Commands
+
             default:
                 break;
 
         }
-        return true;
+        return false;
     }
     public static void gameOff()
     {

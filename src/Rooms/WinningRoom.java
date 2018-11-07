@@ -2,6 +2,7 @@
 package Rooms;
 
 import Game.Runner;
+import People.Monster;
 import People.Person;
 
 public class WinningRoom extends Room
@@ -18,12 +19,14 @@ public class WinningRoom extends Room
      */
     @Override
     public void enterRoom(Person x) {
-
-        occupant = x;
-        x.setxLoc(this.xLoc);
-        x.setyLoc(this.yLoc);
-        System.out.println("You found the winning room! You're safe for now.");
-        Runner.gameOff();
+        if(!(x instanceof Monster))
+        {
+            occupant = x;
+            x.setxLoc(this.xLoc);
+            x.setyLoc(this.yLoc);
+            System.out.println("You found the winning room! You're safe for now.");
+            Runner.gameOff();
+        }
     }
 
     @Override
