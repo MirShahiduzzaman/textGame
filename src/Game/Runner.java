@@ -19,12 +19,10 @@ public class Runner {
         int row = 0;
         int column = 0;
 
-        //Scanner start = new Scanner(System.in);
 
-        System.out.println("Hello player, you will soon play a game of horror. In this game, your goal is to get to the exit, which will be marked on the map. Press any key to begin.");
-        //String begin = start.nextLine();
-        //start.close();
         Scanner fin = new Scanner(System.in);
+        System.out.println("Hello player, you will soon play a game of horror. In this game, your goal is to get to the exit, which will be marked on the map. Press any key to begin.");
+        String begin = fin.nextLine();
 
         System.out.println("Before we start, please enter the difficulty you want for this game.\n 1 easy\n 2 medium\n 3 hard");
         while(row == 0)

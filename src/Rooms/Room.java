@@ -4,6 +4,7 @@ package Rooms;
 import People.Person;
 
 public class Room {
+    String strOccupant;
     Person occupant;
     int xLoc,yLoc;
 
@@ -21,6 +22,7 @@ public class Room {
     {
         System.out.println("You enter a plain old room");
         occupant = x;
+        strOccupant = x + "";
         x.setxLoc(this.xLoc);
         x.setyLoc(this.yLoc);
     }
@@ -31,12 +33,17 @@ public class Room {
      */
     public void leaveRoom(Person x)
     {
+        strOccupant = null;
         occupant = null;
     }
 
     @Override
     public String toString()
     {
+        if(!(strOccupant==null))
+        {
+            return("P");
+        }
         return("NR");
     }
 
