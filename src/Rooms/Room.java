@@ -4,7 +4,7 @@ package Rooms;
 import People.Monster;
 import People.Person;
 
-public class Room {
+public class Room{
     String strOccupant;
     Person occupant;
     int xLoc,yLoc;

@@ -19,11 +19,11 @@ public class Runner {
     {
         int row = 0;
         int column = 0;
-
+        int diffInt = 0;
 
         Scanner fin = new Scanner(System.in);
         System.out.println("Hello player, you will soon play a game of horror. In this game, your goal is to get to the exit, which will be marked on the map. Press any key to begin.");
-        String begin = fin.nextLine();
+        fin.nextLine();
 
         System.out.println("Before we start, please enter the difficulty you want for this game.\n 1 easy\n 2 medium\n 3 hard");
         while(row == 0)
@@ -31,6 +31,7 @@ public class Runner {
             String diff = fin.nextLine();
             if (diff.equals("1") || diff.equals("one") || diff.equals("easy") || diff.equals("e"))
             {
+                diffInt = 1;
                 row = 5;
                 column = 5;
             }
@@ -38,6 +39,7 @@ public class Runner {
             {
                 if (diff.equals("2") || diff.equals("two") || diff.equals("medium") || diff.equals("m"))
                 {
+                    diffInt = 2;
                     row = 6;
                     column = 6;
                 }
@@ -45,6 +47,7 @@ public class Runner {
                 {
                     if (diff.equals("3") || diff.equals("three") || diff.equals("hard") || diff.equals("h"))
                     {
+                        diffInt = 3;
                         row = 7;
                         column = 7;
                     }
@@ -82,7 +85,15 @@ public class Runner {
         */
 
         //Setup player 1 and the input scanner
-        Person player1 = new Person("FirstName", "FamilyName", 0,0);
+        Person player1;
+        if(diffInt == 1 || diffInt == 2)
+        {
+            player1 = new Person("FirstName", "FamilyName", 0, 0,100);
+        }
+        else
+        {
+            player1 = new Person("FirstName", "FamilyName", 0, 0);
+        }
         Monster horseman = new Monster("Mad","Horseman",1,1);
         mansion[0][0].enterRoom(player1);
         mansion[2][2].enterRoom(horseman);
@@ -140,6 +151,7 @@ public class Runner {
 
                     if(temp<counter || choice.equals(""))
                     {
+                        System.out.println("WOW");
                         choice = "sw";
                     }
                 }
@@ -157,6 +169,8 @@ public class Runner {
                 {
                     System.out.println("nw");
                     mansion[horseman.getxLoc()-1][horseman.getyLoc()-1].enterRoom(horseman);
+                    System.out.println(horseman.getxLoc());
+                    System.out.println(horseman.getyLoc());
                 }
                 if(choice.equals("se"))
                 {
@@ -304,6 +318,7 @@ public class Runner {
                 {
                     if (p.getxLoc() < map.length - 1 && p.getyLoc() > 0)
                     {
+                        System.out.println(p.getyLoc());
                         return true;
                     }
                     else

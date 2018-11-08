@@ -8,7 +8,7 @@ public class Person {
     String firstName;
     String familyName;
     int xLoc, yLoc;
-
+    int health;
 
     public int getxLoc() {
         return xLoc;
@@ -34,5 +34,12 @@ public class Person {
         this.yLoc = yLoc;
     }
 
-
+    public Person (String firstName, String familyName, int xLoc, int yLoc, int health)
+    {
+        this.firstName = firstName;
+        this.familyName = familyName;
+        this.xLoc = xLoc;
+        this.yLoc = yLoc;
+        this.health = health;
+    }
 }
