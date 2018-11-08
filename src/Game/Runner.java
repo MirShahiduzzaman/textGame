@@ -95,7 +95,6 @@ public class Runner {
         {
             //counts distance from player and uses it to decide on a way to go
             counter = 0;
-            temp = 0;
             choice = "";
 
             System.out.println("Where would you like to move? (Choose W, A, S, D)");
@@ -115,7 +114,7 @@ public class Runner {
                     temp = Math.abs(horseman.getxLoc()-1 - player1.getxLoc());
                     temp += Math.abs(horseman.getyLoc()-1 - player1.getyLoc());
 
-                    if(temp<counter)
+                    if(temp<counter || choice.equals(""))
                     {
                         counter = temp;
                         choice = "nw";
@@ -127,7 +126,7 @@ public class Runner {
                     temp = Math.abs(horseman.getxLoc()+1 - player1.getxLoc());
                     temp += Math.abs(horseman.getyLoc()+1 - player1.getyLoc());
 
-                    if(temp<counter)
+                    if(temp<counter || choice.equals(""))
                     {
                         counter = temp;
                         choice = "se";
@@ -139,31 +138,36 @@ public class Runner {
                     temp = Math.abs(horseman.getxLoc()+1 - player1.getxLoc());
                     temp += Math.abs(horseman.getyLoc()-1 - player1.getyLoc());
 
-                    if(temp<counter)
+                    if(temp<counter || choice.equals(""))
                     {
                         choice = "sw";
                     }
                 }
 
                 mansion[horseman.getxLoc()][horseman.getyLoc()].leaveRoom(horseman);
+
+                mansion[player1.getxLoc()][player1.getyLoc()].leaveRoom(player1);
+
                 if(choice.equals("ne"))
                 {
+                    System.out.println("ne");
                     mansion[horseman.getxLoc()-1][horseman.getyLoc()+1].enterRoom(horseman);
                 }
                 if(choice.equals("nw"))
                 {
+                    System.out.println("nw");
                     mansion[horseman.getxLoc()-1][horseman.getyLoc()-1].enterRoom(horseman);
                 }
                 if(choice.equals("se"))
                 {
+                    System.out.println("se");
                     mansion[horseman.getxLoc()+1][horseman.getyLoc()+1].enterRoom(horseman);
                 }
                 if(choice.equals("sw"))
                 {
+                    System.out.println("sw");
                     mansion[horseman.getxLoc()+1][horseman.getyLoc()-1].enterRoom(horseman);
                 }
-
-                mansion[player1.getxLoc()][player1.getyLoc()].leaveRoom(player1);
 
                 move = move.toLowerCase().trim();
                 if(move.equals("w"))
