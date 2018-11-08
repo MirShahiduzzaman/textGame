@@ -4,6 +4,7 @@ package Game;
 import People.Monster;
 import People.Person;
 import Rooms.BedRoom;
+import Rooms.RookieRoom;
 import Rooms.Room;
 import Rooms.WinningRoom;
 import Board.Board;
@@ -76,10 +77,19 @@ public class Runner {
         haunt.addRoom(0,0,new BedRoom(0,0));
 
         /**Need to work on adding this room*/
-        /*for(int i = 0;i<diffInt*3;i++)
+        for(int i = 0;i<diffInt*3;i++)
         {
-            haunt.addRoom((int)(Math.random()*mansion.length), (int)(Math.random()*mansion.length), new BedRoom(0, 0));
-        }*/
+            xRoom = (int)(Math.random()*mansion.length);
+            yRoom = (int)(Math.random()*mansion.length);
+            if(mansion[xRoom][yRoom] instanceof BedRoom || mansion[xRoom][yRoom] instanceof RookieRoom)
+            {
+                i--;
+            }
+            else
+            {
+                haunt.addRoom(xRoom, yRoom, new RookieRoom(xRoom, yRoom));
+            }
+        }
 
         System.out.println(haunt);
 
@@ -200,11 +210,99 @@ public class Runner {
                     mansion[player1.getxLoc()][player1.getyLoc()-1].enterRoom(player1);
                 }
 
-                /**Horse moves, but player1 stays where he is.*//*
-                if(mansion[player1.getxLoc()][player1.getyLoc()] instanceof BedRoom)
+                /**Horse moves, but player1 stays where he is.*/
+                if(mansion[player1.getxLoc()][player1.getyLoc()] instanceof RookieRoom)
                 {
+                    if(validMove("ne",horseman,mansion))
+                    {
+                        //map[p.getxLoc()-1][p.getyLoc()+1].enterRoom(p);
+                        counter = Math.abs(horseman.getxLoc()-1 - player1.getxLoc());
+                        counter += Math.abs(horseman.getyLoc()+1 - player1.getyLoc());
+                        choice = "ne";
+                    }
+                    if(validMove("nw",horseman,mansion))
+                    {
+                        //map[p.getxLoc()-1][p.getyLoc()-1].enterRoom(p);
+                        temp = Math.abs(horseman.getxLoc()-1 - player1.getxLoc());
+                        temp += Math.abs(horseman.getyLoc()-1 - player1.getyLoc());
 
-                }*/
+                        if(temp<counter || choice.equals(""))
+                        {
+                            counter = temp;
+                            choice = "nw";
+                        }
+                    }
+                    if(validMove("se",horseman,mansion))
+                    {
+                        //map[p.getxLoc()+1][p.getyLoc()+1].enterRoom(p);
+                        temp = Math.abs(horseman.getxLoc()+1 - player1.getxLoc());
+                        temp += Math.abs(horseman.getyLoc()+1 - player1.getyLoc());
+
+                        if(temp<counter || choice.equals(""))
+                        {
+                            counter = temp;
+                            choice = "se";
+                        }
+                    }
+                    if(validMove("sw",horseman,mansion))
+                    {
+                        //map[p.getxLoc()+1][p.getyLoc()-1].enterRoom(p);
+                        temp = Math.abs(horseman.getxLoc()+1 - player1.getxLoc());
+                        temp += Math.abs(horseman.getyLoc()-1 - player1.getyLoc());
+
+                        if(temp<counter || choice.equals(""))
+                        {
+                            System.out.println("WOW");
+                            choice = "sw";
+                        }
+                    }
+
+                    mansion[horseman.getxLoc()][horseman.getyLoc()].leaveRoom(horseman);
+
+                    mansion[player1.getxLoc()][player1.getyLoc()].leaveRoom(player1);
+
+                    if(choice.equals("ne"))
+                    {
+                        //System.out.println("ne");
+                        mansion[horseman.getxLoc()-1][horseman.getyLoc()+1].enterRoom(horseman);
+                    }
+                    if(choice.equals("nw"))
+                    {
+                        //System.out.println("nw");
+                        mansion[horseman.getxLoc()-1][horseman.getyLoc()-1].enterRoom(horseman);
+                        System.out.println(horseman.getxLoc());
+                        System.out.println(horseman.getyLoc());
+                    }
+                    if(choice.equals("se"))
+                    {
+                        //System.out.println("se");
+                        mansion[horseman.getxLoc()+1][horseman.getyLoc()+1].enterRoom(horseman);
+                    }
+                    if(choice.equals("sw"))
+                    {
+                        //System.out.println("sw");
+                        mansion[horseman.getxLoc()+1][horseman.getyLoc()-1].enterRoom(horseman);
+                    }
+
+                    move = move.toLowerCase().trim();
+                    if(move.equals("w"))
+                    {
+                        mansion[player1.getxLoc()-1][player1.getyLoc()].enterRoom(player1);
+                    }
+                    if(move.equals("d"))
+                    {
+                        mansion[player1.getxLoc()][player1.getyLoc() + 1].enterRoom(player1);
+
+                    }
+                    if(move.equals("s"))
+                    {
+                        mansion[player1.getxLoc()+1][player1.getyLoc()].enterRoom(player1);
+                    }
+                    if(move.equals("a"))
+                    {
+                        mansion[player1.getxLoc()][player1.getyLoc()-1].enterRoom(player1);
+                    }
+                }
 
                 System.out.println(haunt);
                 System.out.println("Your coordinates: row = " + player1.getxLoc() + " col = " + player1.getyLoc());

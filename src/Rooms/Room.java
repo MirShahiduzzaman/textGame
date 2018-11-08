@@ -65,7 +65,8 @@ public class Room extends allRooms{
         {
           return("NR");
         }
-        else {
+        else
+        {
             return ("??");
         }
     }
