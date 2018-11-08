@@ -43,7 +43,8 @@ public class Room {
 
     /**
      * Removes the player from the room.
-     * @param x
+     * @param x name of person leaving the room
+     *          
      */
     public void leaveRoom(Person x)
     {
