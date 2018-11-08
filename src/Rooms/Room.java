@@ -4,12 +4,7 @@ package Rooms;
 import People.Monster;
 import People.Person;
 
-public class Room{
-    String strOccupant;
-    Person occupant;
-    int xLoc,yLoc;
-    boolean enter;
-
+public class Room extends allRooms{
     public Room(int x, int y)
     {
         xLoc = x;

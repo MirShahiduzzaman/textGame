@@ -20,6 +20,8 @@ public class Runner {
         int row = 0;
         int column = 0;
         int diffInt = 0;
+        int xRoom = 0;
+        int yRoom = 0;
 
         Scanner fin = new Scanner(System.in);
         System.out.println("Hello player, you will soon play a game of horror. In this game, your goal is to get to the exit, which will be marked on the map. Press any key to begin.");
@@ -59,9 +61,6 @@ public class Runner {
             }
         }
 
-        //detect answer
-        //use answer for dimensions
-
         Room[][] mansion = new Room[row][column];
         Board haunt = new Board(mansion);
 
@@ -75,16 +74,15 @@ public class Runner {
 
         haunt.addRoom(mansion[0].length-1,mansion.length-1,new WinningRoom(mansion.length-1,mansion.length-1));
         haunt.addRoom(0,0,new BedRoom(0,0));
+
+        /**Need to work on adding this room*/
+        /*for(int i = 0;i<diffInt*3;i++)
+        {
+            haunt.addRoom((int)(Math.random()*mansion.length), (int)(Math.random()*mansion.length), new BedRoom(0, 0));
+        }*/
+
         System.out.println(haunt);
 
-        /**
-        //Create a random winning room.
-        int x = (int)(Math.random()*building.length);
-        int y = (int)(Math.random()*building.length);
-        building[x][y] = new WinningRoom(x, y);
-        */
-
-        //Setup player 1 and the input scanner
         Person player1;
         if(diffInt == 1 || diffInt == 2)
         {
@@ -162,24 +160,24 @@ public class Runner {
 
                 if(choice.equals("ne"))
                 {
-                    System.out.println("ne");
+                    //System.out.println("ne");
                     mansion[horseman.getxLoc()-1][horseman.getyLoc()+1].enterRoom(horseman);
                 }
                 if(choice.equals("nw"))
                 {
-                    System.out.println("nw");
+                    //System.out.println("nw");
                     mansion[horseman.getxLoc()-1][horseman.getyLoc()-1].enterRoom(horseman);
                     System.out.println(horseman.getxLoc());
                     System.out.println(horseman.getyLoc());
                 }
                 if(choice.equals("se"))
                 {
-                    System.out.println("se");
+                    //System.out.println("se");
                     mansion[horseman.getxLoc()+1][horseman.getyLoc()+1].enterRoom(horseman);
                 }
                 if(choice.equals("sw"))
                 {
-                    System.out.println("sw");
+                    //System.out.println("sw");
                     mansion[horseman.getxLoc()+1][horseman.getyLoc()-1].enterRoom(horseman);
                 }
 
@@ -201,6 +199,12 @@ public class Runner {
                 {
                     mansion[player1.getxLoc()][player1.getyLoc()-1].enterRoom(player1);
                 }
+
+                /**Horse moves, but player1 stays where he is.*//*
+                if(mansion[player1.getxLoc()][player1.getyLoc()] instanceof BedRoom)
+                {
+
+                }*/
 
                 System.out.println(haunt);
                 System.out.println("Your coordinates: row = " + player1.getxLoc() + " col = " + player1.getyLoc());
@@ -318,7 +322,6 @@ public class Runner {
                 {
                     if (p.getxLoc() < map.length - 1 && p.getyLoc() > 0)
                     {
-                        System.out.println(p.getyLoc());
                         return true;
                     }
                     else
