@@ -210,7 +210,7 @@ public class Runner {
                     mansion[player1.getxLoc()][player1.getyLoc()-1].enterRoom(player1);
                 }
 
-                /**Horse moves, but player1 stays where he is.*/
+                /**Horse moves, but player1 stays where he is.
                 if(mansion[player1.getxLoc()][player1.getyLoc()] instanceof RookieRoom)
                 {
                     if(validMove("ne",horseman,mansion))
@@ -302,7 +302,7 @@ public class Runner {
                     {
                         mansion[player1.getxLoc()][player1.getyLoc()-1].enterRoom(player1);
                     }
-                }
+                }*/
 
                 System.out.println(haunt);
                 System.out.println("Your coordinates: row = " + player1.getxLoc() + " col = " + player1.getyLoc());
