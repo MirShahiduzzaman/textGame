@@ -18,16 +18,15 @@ public class Runner {
         int row = 0;
         int column = 0;
         int diffInt = 0;
-        int xRoom = 0;
-        int yRoom = 0;
+        int xRoom;
+        int yRoom;
 
         Scanner fin = new Scanner(System.in);
-        System.out.println("Hello player, you will soon play a game of horror. In this game, your goal is to get to the exit, which will be marked on the map. Press any key to begin.");
+        System.out.println("Hello player, you will soon play a game of horror. In this game, your goal is to get to the exit, which will be marked on the map.\nPlease enter your name.");
         fin.nextLine();
 
         System.out.println("Before we start, please enter the difficulty you want for this game.\n 1 easy\n 2 " +
-                "challenging\n 3 impossible");
-        while(row == 0)
+                "challenging\n 3 insane");
         {
             String diff = fin.nextLine();
             if (diff.equals("1") || diff.equals("one") || diff.equals("easy") || diff.equals("e"))
@@ -46,7 +45,7 @@ public class Runner {
                 }
                 else
                 {
-                    if (diff.equals("3") || diff.equals("three") || diff.equals("impossible") || diff.equals("i"))
+                    if (diff.equals("3") || diff.equals("three") || diff.equals("insane") || diff.equals("i"))
                     {
                         diffInt = 3;
                         row = 7;
@@ -75,11 +74,11 @@ public class Runner {
         haunt.addRoom(mansion[0].length-1,mansion.length-1,new WinningRoom(mansion.length-1,mansion.length-1));
         haunt.addRoom(0,0,new BedRoom(0,0));
 
-        for(int i = 0;i<diffInt*3;i++)
+        for(int i = 0;i<(diffInt*3);i++)
         {
             xRoom = (int)(Math.random()*mansion.length);
             yRoom = (int)(Math.random()*mansion.length);
-            if(mansion[xRoom][yRoom] instanceof BedRoom || mansion[xRoom][yRoom] instanceof RookieRoom)
+            if(mansion[xRoom][yRoom] instanceof BedRoom || mansion[xRoom][yRoom] instanceof RookieRoom || mansion[xRoom][yRoom] instanceof WinningRoom)
             {
                 i--;
             }
@@ -101,22 +100,11 @@ public class Runner {
             player1 = new Person("FirstName", "FamilyName", 0, 0);
         }
 
-        if(gameOn) {
-            System.out.println(haunt);
-        }
-
-        // ERROR MONSTER CATCHES U FROM START
         Monster horseman = new Monster("Mad","Horseman",2,2);
-        mansion[0][0].enterRoom(player1);
-
-        if(gameOn) {
-            System.out.println(haunt);
-        }
 
         mansion[2][2].enterRoom(horseman);
-        if(gameOn) {
-            System.out.println(haunt);
-        }
+        mansion[0][0].enterRoom(player1);
+
         Scanner in = new Scanner(System.in);
         int counter;
         int temp;

@@ -33,6 +33,7 @@ public abstract class Room
             enter = true;
             System.out.println("You enter a plain old room");
         }
+
         if(occupant == null)
         {
             occupant = x;
@@ -42,6 +43,7 @@ public abstract class Room
             System.out.println("THE MAD HORSEMAN CAUGHT YOU! TRY AGAIN.");
             System.exit(0);
         }
+
         strOccupant = x + "";
         x.setxLoc(this.xLoc);
         x.setyLoc(this.yLoc);
@@ -64,20 +66,20 @@ public abstract class Room
         {
             if(occupant instanceof Monster)
             {
-                return("M");
+                return(" M ");
             }
             else
             {
-                return("P");
+                return(" P ");
             }
         }
         if(enter)
         {
-          return("NR");
+          return("NOR");
         }
         else
         {
-            return ("??");
+            return ("???");
         }
     }
 

@@ -19,10 +19,12 @@ public class RookieRoom extends Room
             System.out.println("THE MAD HORSEMAN CAUGHT YOU! TRY AGAIN.");
             System.exit(0);
         }
+
         occupant = x;
         strOccupant = x + "";
         x.setxLoc(this.xLoc);
         x.setyLoc(this.yLoc);
+
         if(!(x instanceof Monster))
         {
             System.out.println("You are bombarded with memories and faint for one turn. The horseman has now moved " +
@@ -39,13 +41,13 @@ public class RookieRoom extends Room
         {
             if(occupant instanceof Monster)
             {
-                return("M");
+                return(" M ");
             }
             else
             {
-                return("P");
+                return(" P ");
             }
         }
-        return("TR");
+        return("TRP");
     }
 }

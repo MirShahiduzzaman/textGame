@@ -46,11 +46,11 @@ public class WinningRoom extends Room
         {
             if(occupant instanceof Monster)
             {
-                return("M");
+                return(" M ");
             }
             else
             {
-                return("P");
+                return(" P ");
             }
         }
         return("WIN");
