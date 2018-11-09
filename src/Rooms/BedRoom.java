@@ -1,4 +1,4 @@
-/**Mir Shahiduzzaman November 5*/
+/**Mir Shahiduzzaman November 9*/
 package Rooms;
 
 import People.Monster;
@@ -27,10 +27,12 @@ public class BedRoom extends Room
             System.out.println("THE MAD HORSEMAN CAUGHT YOU! TRY AGAIN.");
             System.exit(0);
         }
+
         occupant = x;
         strOccupant = x + "";
         x.setxLoc(this.xLoc);
         x.setyLoc(this.yLoc);
+
         if(!(x instanceof Monster))
         {
             System.out.println("You wake up in the middle of the night and hear a loud noise. It seems to be your " +
@@ -47,6 +49,17 @@ public class BedRoom extends Room
     @Override
     public String toString()
     {
+        if(!(strOccupant==null))
+        {
+            if(occupant instanceof Monster)
+            {
+                return("M");
+            }
+            else
+            {
+                return("P");
+            }
+        }
         return("BED");
     }
 }

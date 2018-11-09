@@ -1,4 +1,4 @@
-/**Mir Shahiduzzaman November 5*/
+/**Mir Shahiduzzaman November 9*/
 package Rooms;
 
 import Game.Runner;
@@ -27,6 +27,7 @@ public class WinningRoom extends Room
         if(!(x instanceof Monster))
         {
             occupant = x;
+            strOccupant = x + "";
             x.setxLoc(this.xLoc);
             x.setyLoc(this.yLoc);
             System.out.println("You found the winning room! You're safe for now.");
@@ -41,6 +42,17 @@ public class WinningRoom extends Room
     @Override
     public String toString()
     {
+        if(!(strOccupant==null))
+        {
+            if(occupant instanceof Monster)
+            {
+                return("M");
+            }
+            else
+            {
+                return("P");
+            }
+        }
         return("WIN");
     }
 

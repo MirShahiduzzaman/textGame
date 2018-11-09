@@ -1,4 +1,4 @@
-/**Mir Shahiduzzaman November 5*/
+/**Mir Shahiduzzaman November 9*/
 package Rooms;
 
 import People.Monster;
@@ -35,6 +35,17 @@ public class RookieRoom extends Room
     @Override
     public String toString()
     {
+        if(!(strOccupant==null))
+        {
+            if(occupant instanceof Monster)
+            {
+                return("M");
+            }
+            else
+            {
+                return("P");
+            }
+        }
         return("TR");
     }
 }
