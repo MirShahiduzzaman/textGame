@@ -98,7 +98,7 @@ public class Runner {
             }
             else
             {
-                haunt.addRoom(xRoom, yRoom, new RookieRoom(xRoom, yRoom));
+                haunt.addRoom(xRoom, yRoom, new StrategyRoom(xRoom, yRoom));
             }
         }
 
@@ -184,8 +184,6 @@ public class Runner {
                 if(choice.equals("nw"))
                 {
                     mansion[horseman.getxLoc()-1][horseman.getyLoc()-1].enterRoom(horseman);
-                    System.out.println(horseman.getxLoc());
-                    System.out.println(horseman.getyLoc());
                 }
                 if(choice.equals("se"))
                 {
@@ -252,7 +250,6 @@ public class Runner {
 
                         if(temp<counter || choice.equals(""))
                         {
-                            System.out.println("WOW");
                             choice = "sw";
                         }
                     }
