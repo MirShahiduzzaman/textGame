@@ -22,16 +22,16 @@ public class BedRoom extends Room
      */
     @Override
     public void enterRoom(Person x) {
+        occupant = x;
+        strOccupant = x + "";
+        x.setxLoc(this.xLoc);
+        x.setyLoc(this.yLoc);
+
         if(!(occupant == null))
         {
             System.out.println("THE MAD HORSEMAN CAUGHT YOU! TRY AGAIN.");
             System.exit(0);
         }
-
-        occupant = x;
-        strOccupant = x + "";
-        x.setxLoc(this.xLoc);
-        x.setyLoc(this.yLoc);
 
         if(!(x instanceof Monster))
         {
