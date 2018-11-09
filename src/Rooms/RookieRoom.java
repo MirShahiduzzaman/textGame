@@ -25,7 +25,8 @@ public class RookieRoom extends Room
         x.setyLoc(this.yLoc);
         if(!(x instanceof Monster))
         {
-            System.out.println("You are bombarded with memories and faint for one turn. The horseman has now moved.");
+            System.out.println("You are bombarded with memories and faint for one turn. The horseman has now moved " +
+                    "twice!");
         }
 
         //make horseman move randomly or else it will be too hard!

@@ -6,6 +6,13 @@ package People;
  */
 public class Monster extends Person
 {
+    /**
+     * sets up Monster Class
+     * @param firstName first name of monster
+     * @param familyName last name of monster
+     * @param xLoc the row the monster is in
+     * @param yLoc the column the monster is in
+     */
     public Monster (String firstName, String familyName, int xLoc, int yLoc)
     {
         super(firstName,familyName,xLoc,yLoc);

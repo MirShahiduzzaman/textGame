@@ -8,6 +8,11 @@ import People.Person;
 public class WinningRoom extends Room
 {
 
+    /**
+     * sets the coordinates of the Room
+     * @param x the row the Winning Room is in
+     * @param y the column the Winning Room is in
+     */
     public WinningRoom(int x, int y) {
         super(x, y);
 
@@ -29,6 +34,10 @@ public class WinningRoom extends Room
         }
     }
 
+    /**
+     * Distinguishes the WinningRoom on the map
+     * @return String WIN to represent the WinningRoom
+     */
     @Override
     public String toString()
     {

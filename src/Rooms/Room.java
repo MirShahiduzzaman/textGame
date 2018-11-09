@@ -4,7 +4,18 @@ package Rooms;
 import People.Monster;
 import People.Person;
 
-public class Room extends allRooms{
+public abstract class Room
+{
+    String strOccupant;
+    Person occupant;
+    int xLoc,yLoc;
+    boolean enter;
+
+    /**
+     * Sets x and y to the specified values
+     * @param x the number of rows
+     * @param y the number of columns
+     */
     public Room(int x, int y)
     {
         xLoc = x;
@@ -39,7 +50,6 @@ public class Room extends allRooms{
     /**
      * Removes the player from the room.
      * @param x name of person leaving the room
-     *
      */
     public void leaveRoom(Person x)
     {

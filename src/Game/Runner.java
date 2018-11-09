@@ -3,10 +3,7 @@ package Game;
 
 import People.Monster;
 import People.Person;
-import Rooms.BedRoom;
-import Rooms.RookieRoom;
-import Rooms.Room;
-import Rooms.WinningRoom;
+import Rooms.*;
 import Board.Board;
 
 import java.util.Scanner;
@@ -28,7 +25,8 @@ public class Runner {
         System.out.println("Hello player, you will soon play a game of horror. In this game, your goal is to get to the exit, which will be marked on the map. Press any key to begin.");
         fin.nextLine();
 
-        System.out.println("Before we start, please enter the difficulty you want for this game.\n 1 easy\n 2 medium\n 3 hard");
+        System.out.println("Before we start, please enter the difficulty you want for this game.\n 1 easy\n 2 " +
+                "challenging\n 3 impossible");
         while(row == 0)
         {
             String diff = fin.nextLine();
@@ -40,7 +38,7 @@ public class Runner {
             }
             else
             {
-                if (diff.equals("2") || diff.equals("two") || diff.equals("medium") || diff.equals("m"))
+                if (diff.equals("2") || diff.equals("two") || diff.equals("challenge") || diff.equals("c") || diff.equals("challenging"))
                 {
                     diffInt = 2;
                     row = 6;
@@ -48,7 +46,7 @@ public class Runner {
                 }
                 else
                 {
-                    if (diff.equals("3") || diff.equals("three") || diff.equals("hard") || diff.equals("h"))
+                    if (diff.equals("3") || diff.equals("three") || diff.equals("impossible") || diff.equals("i"))
                     {
                         diffInt = 3;
                         row = 7;
@@ -56,7 +54,8 @@ public class Runner {
                     }
                     else
                     {
-                        System.out.println("Please choose a valid difficulty (easy, medium, or hard).");
+                        System.out.println("Please choose a valid difficulty \n1 easy\n2 +\n" +
+                                "challenge\n3 impossible");
                     }
                 }
             }
@@ -69,7 +68,7 @@ public class Runner {
         {
             for (int y = 0; y < mansion[x].length; y++)
             {
-                haunt.addRoom(x,y,new Room(x,y));
+                haunt.addRoom(x,y,new NormalRoom(x,y));
             }
         }
 
@@ -210,7 +209,7 @@ public class Runner {
                     mansion[player1.getxLoc()][player1.getyLoc()-1].enterRoom(player1);
                 }
 
-                /**Horse moves, but player1 stays where he is.
+                //Horse moves, but player1 stays where he is.
                 if(mansion[player1.getxLoc()][player1.getyLoc()] instanceof RookieRoom)
                 {
                     if(validMove("ne",horseman,mansion))
@@ -259,8 +258,6 @@ public class Runner {
 
                     mansion[horseman.getxLoc()][horseman.getyLoc()].leaveRoom(horseman);
 
-                    mansion[player1.getxLoc()][player1.getyLoc()].leaveRoom(player1);
-
                     if(choice.equals("ne"))
                     {
                         //System.out.println("ne");
@@ -283,26 +280,7 @@ public class Runner {
                         //System.out.println("sw");
                         mansion[horseman.getxLoc()+1][horseman.getyLoc()-1].enterRoom(horseman);
                     }
-
-                    move = move.toLowerCase().trim();
-                    if(move.equals("w"))
-                    {
-                        mansion[player1.getxLoc()-1][player1.getyLoc()].enterRoom(player1);
-                    }
-                    if(move.equals("d"))
-                    {
-                        mansion[player1.getxLoc()][player1.getyLoc() + 1].enterRoom(player1);
-
-                    }
-                    if(move.equals("s"))
-                    {
-                        mansion[player1.getxLoc()+1][player1.getyLoc()].enterRoom(player1);
-                    }
-                    if(move.equals("a"))
-                    {
-                        mansion[player1.getxLoc()][player1.getyLoc()-1].enterRoom(player1);
-                    }
-                }*/
+                }
 
                 System.out.println(haunt);
                 System.out.println("Your coordinates: row = " + player1.getxLoc() + " col = " + player1.getyLoc());
@@ -439,6 +417,10 @@ public class Runner {
         }
         return false;
     }
+
+    /**
+     * Turns the games off
+     */
     public static void gameOff()
     {
         gameOn = false;

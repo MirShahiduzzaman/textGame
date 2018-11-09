@@ -6,10 +6,20 @@ import People.Person;
 
 public class BedRoom extends Room
 {
+    /**
+     * sets up variables for BedRoom
+     * @param x the row the Room is in
+     * @param y the column the Room is in
+     */
     public BedRoom(int x, int y) {
         super(x, y);
     }
 
+    /**
+     * Sets the coordinates of the specified Person to the coordinates of the Room
+     * Checks for whether there are two people in the room, which would mean GAME OVER
+     * @param x the Person entering the Room
+     */
     @Override
     public void enterRoom(Person x) {
         if(!(occupant == null))
@@ -30,6 +40,10 @@ public class BedRoom extends Room
         }
     }
 
+    /**
+     * Distinguishes the BED in the map
+     * @return String BED to represent BedRoom
+     */
     @Override
     public String toString()
     {
