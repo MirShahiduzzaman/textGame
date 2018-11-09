@@ -88,12 +88,26 @@ public class Runner {
             }
         }
 
+        for(int i = 0;i<(diffInt*3)-((diffInt-1)*2);i++)
+        {
+            xRoom = (int)(Math.random()*mansion.length);
+            yRoom = (int)(Math.random()*mansion.length);
+            if(mansion[xRoom][yRoom] instanceof BedRoom || mansion[xRoom][yRoom] instanceof RookieRoom || mansion[xRoom][yRoom] instanceof WinningRoom)
+            {
+                i--;
+            }
+            else
+            {
+                haunt.addRoom(xRoom, yRoom, new RookieRoom(xRoom, yRoom));
+            }
+        }
+
         System.out.println(haunt);
 
         Person player1;
         if(diffInt == 1 || diffInt == 2)
         {
-            player1 = new Person("FirstName", "FamilyName", 0, 0,100);
+            player1 = new Person("FirstName", "FamilyName", 0, 0,10);
         }
         else
         {
@@ -200,8 +214,6 @@ public class Runner {
                 {
                     mansion[player1.getxLoc()][player1.getyLoc()-1].enterRoom(player1);
                 }
-
-                System.out.println(haunt);
 
                 if(mansion[player1.getxLoc()][player1.getyLoc()] instanceof RookieRoom)
                 {
