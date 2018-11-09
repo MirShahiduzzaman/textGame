@@ -101,7 +101,7 @@ public class Runner {
                 haunt.addRoom(xRoom, yRoom, new StrategyRoom(xRoom, yRoom));
             }
         }
-
+//haunt
         System.out.println(haunt);
 
         Person player1;
