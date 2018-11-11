@@ -1,6 +1,7 @@
 /**Mir Shahiduzzaman November 9*/
 package Game;
 
+import Consumables.*;
 import People.Monster;
 import People.Person;
 import Rooms.*;
@@ -27,6 +28,7 @@ public class Runner {
 
         System.out.println("Before we start, please enter the difficulty you want for this game.\n 1 easy\n 2 " +
                 "challenging\n 3 insane");
+        while(row == 0)
         {
             String diff = fin.nextLine();
             if (diff.equals("1") || diff.equals("one") || diff.equals("easy") || diff.equals("e"))
@@ -101,13 +103,31 @@ public class Runner {
                 haunt.addRoom(xRoom, yRoom, new StrategyRoom(xRoom, yRoom));
             }
         }
-//haunt
+
+        int randX;
+        int randY;
+        Consumable[] foodList = {new Apple(),new Candy(),new ExpiredMilk(),new Meat()};
+        for(int i = 0;i<4;i++)
+        {
+            randX = (int)(Math.random()*mansion.length);
+            randY = (int)(Math.random()*mansion.length);
+
+            if(mansion[randX][randY].food==null)
+            {
+                haunt.addFood(randX,randY,foodList[i]);
+            }
+            else
+            {
+                i--;
+            }
+        }
+
         System.out.println(haunt);
 
         Person player1;
         if(diffInt == 1 || diffInt == 2)
         {
-            player1 = new Person("FirstName", "FamilyName", 0, 0,10);
+            player1 = new Person("FirstName", "FamilyName", 0, 0,8);
         }
         else
         {

@@ -1,12 +1,12 @@
 /**Mir Shahiduzzaman November 9*/
 package Board;
 
+import Consumables.Consumable;
 import Rooms.Room;
 
 public class Board
 {
     private Room[][] map;
-    //maybe use boolean to change room status and maybe set it up in the room class!!
 
     /**
      * sets map equal to a 2D array of Rooms
@@ -37,6 +37,10 @@ public class Board
     {
         map[row][column] = r;
     }
+    public void addFood(int row, int column, Consumable c)
+    {
+        map[row][column].food = c;
+    }
 
     /**
      * Prints out map
@@ -45,7 +49,7 @@ public class Board
     @Override
     public String toString()
     {
-        String showBoard = "";
+        String showBoard = "\n";
         for(int i = 0;i<map.length;i++)
         {
             for(int a = 0;a<map[i].length;a++)
@@ -54,6 +58,8 @@ public class Board
             }
             showBoard += "\n";
         }
+        showBoard += "Key\nP=You  M=Mad Horseman  BED=Bedroom  NOR=Normal Room  STR=Strategy Room  WIN=Win Room  " +
+                "TRP=Trap Room\n";
         return(showBoard);
     }
 }

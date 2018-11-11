@@ -3,14 +3,14 @@ package Consumables;
 
 import People.Person;
 
-//less buff and less speed
-public class ExpiredMilk implements Consumable{
+//increase speed
+public class Apple implements Consumable{
     public void gainHealth(Person p)
     {
-        p.health -= 10;
+        p.health += 10;
     }
     public void foodImp(Person p)
     {
-        p.health -= (int)(Math.random()*5 + 11);
+        p.health += (int)(Math.random()*5+1);
     }
 }

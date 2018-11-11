@@ -33,8 +33,9 @@ public class BedRoom extends Room
         x.setxLoc(this.xLoc);
         x.setyLoc(this.yLoc);
 
-        if(!(x instanceof Monster))
+        if((!(x instanceof Monster)) && !enter)
         {
+            enter = true;
             System.out.println("You wake up in the middle of the night and hear a loud noise. It seems to be your " +
                     "horseman. He's behind you, giving you a one move headstart.\nMission: Get to the exit without " +
                     "getting" +

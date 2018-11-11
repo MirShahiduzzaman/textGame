@@ -1,11 +1,13 @@
 /**Mir Shahiduzzaman November 9*/
 package Rooms;
 
+import Consumables.Consumable;
 import People.Monster;
 import People.Person;
 
 public abstract class Room
 {
+    public Consumable food = null;
     String strOccupant;
     Person occupant;
     int xLoc,yLoc;
