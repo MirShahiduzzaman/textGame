@@ -8,6 +8,7 @@ import People.Person;
 public abstract class Room
 {
     public Consumable food = null;
+    String strFood="";
     String strOccupant;
     Person occupant;
     int xLoc,yLoc;
@@ -81,7 +82,14 @@ public abstract class Room
         }
         else
         {
-            return ("???");
+            if(!(this.food == null))
+            {
+                strFood = "" + this.food;
+                return(strFood.substring(0,3).toUpperCase());
+            }
+            else {
+                return ("???");
+            }
         }
     }
 
