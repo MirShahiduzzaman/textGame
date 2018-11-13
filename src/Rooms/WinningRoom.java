@@ -30,7 +30,7 @@ public class WinningRoom extends Room
             strOccupant = x + "";
             x.setxLoc(this.xLoc);
             x.setyLoc(this.yLoc);
-            System.out.println("You found the winning room! You're safe for now.");
+            System.out.println("\nYou found the winning room! You're safe for now.");
             Runner.gameOff();
         }
     }

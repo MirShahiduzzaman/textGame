@@ -35,10 +35,9 @@ public abstract class Room
         if(!(x instanceof Monster))
         {
             enter = true;
-            System.out.println("You enter a plain old room");
+            System.out.println("\nYou enter a plain old room");
             if(!(food == null))
             {
-                System.out.println("You have now eaten a(n) " + this.food);
                 this.food.gainHealth(x);
                 this.food.foodImp(x);
                 this.food = null;

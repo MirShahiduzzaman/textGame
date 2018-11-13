@@ -59,7 +59,7 @@ public class Board
             showBoard += "\n";
         }
         showBoard += "Key\nP=You  M=Mad Horseman  BED=Bedroom  NOR=Normal Room  STR=Strategy Room  WIN=Win Room  " +
-                "TRP=Trap Room\n";
+                "TRP=Trap Room\nAPP=Apple  CAN=Candy  MIL=Milk  MEA=Meat\n";
         return(showBoard);
     }
 }

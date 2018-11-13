@@ -22,7 +22,7 @@ public class Runner {
 
         Scanner fin = new Scanner(System.in);
         System.out.println("Hello player, you will soon play a game of horror. In this game, your goal is to get to the exit, which will be marked on the map.\nPlease enter your name.");
-        fin.nextLine();
+        String name = fin.nextLine();
 
         System.out.println("Before we start, please enter the difficulty you want for this game.\n 1 easy\n 2 " +
                 "challenging\n 3 insane");
@@ -62,16 +62,16 @@ public class Runner {
 
         Room[][] mansion;
         Board haunt;
-        /*if(diffInt == 1)
-        {*/
+        if(diffInt == 1)
+        {
             haunt = new Board(row, column);
             mansion = haunt.map;
-        /*}
+        }
         else
         {
             mansion = new Room[row][column];
             haunt = new Board(mansion);
-        }*/
+        }
 
         for (int x = 0; x<mansion.length; x++)
         {
@@ -125,7 +125,7 @@ public class Runner {
             randX = (int)(Math.random()*mansion.length);
             randY = (int)(Math.random()*mansion.length);
 
-            if(mansion[randX][randY].food==null)
+            if(mansion[randX][randY].food==null && !(randX==0 && randY==0) && !(randX==mansion.length-1 && randY==mansion.length-1))
             {
                 haunt.addFood(randX,randY,foodList[i]);
             }
@@ -140,11 +140,11 @@ public class Runner {
         Person player1;
         if(diffInt == 1 || diffInt == 2)
         {
-            player1 = new Person("FirstName", "FamilyName", 0, 0,(8/diffInt));
+            player1 = new Person("King", name, 0, 0,(16/diffInt));
         }
         else
         {
-            player1 = new Person("FirstName", "FamilyName", 0, 0);
+            player1 = new Person("King", name, 0, 0);
         }
 
         Monster horseman = new Monster("Mad","Horseman",2,2);
@@ -163,7 +163,7 @@ public class Runner {
             counter = 0;
             choice = "";
 
-            System.out.println("Where would you like to move? (Choose W, A, S, D) You can also type status to view " +
+            System.out.println("Where would you like to move? (Choose W, A, S, D) You can also type 'status' to see " +
                     "your status.");
             String move = in.nextLine();
             if(validMove(move, player1, mansion))
@@ -322,7 +322,16 @@ public class Runner {
             }
             else
             {
-                System.out.println("Please choose a valid move.");
+                if(move.toLowerCase().equals("status"))
+                {
+                    System.out.println("Status");
+                    System.out.println("Name: " + player1.name);
+                    System.out.println("Health: " + player1.health);
+                }
+                else
+                {
+                    System.out.println("Please choose a valid move.");
+                }
             }
         }
         in.close();

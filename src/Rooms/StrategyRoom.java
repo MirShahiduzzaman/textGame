@@ -38,9 +38,25 @@ public class StrategyRoom extends Room
 
         if(!(x instanceof Monster))
         {
-            System.out.println("You search through this room for help and find a health potion! Your health went up by 5.");
-            x.health += 5;
-            System.out.println("Health: " + x.health);
+            if(!enter)
+            {
+                System.out.println("\nYou search through this room for help and find a health potion! Your health " +
+                        "went up by 5.");
+                x.health += 5;
+                System.out.println("Health: " + x.health);
+            }
+            if(!(food == null))
+            {
+                this.food.gainHealth(x);
+                this.food.foodImp(x);
+                this.food = null;
+            }
+
+            if(enter)
+            {
+                System.out.println("\nYou already found a health potion here.");
+            }
+
             enter = true;
         }
     }
@@ -63,6 +79,13 @@ public class StrategyRoom extends Room
                 return(" P ");
             }
         }
-        return("STR");
+        if(!enter)
+        {
+            return("???");
+        }
+        else
+        {
+            return("STR");
+        }
     }
 }

@@ -9,6 +9,7 @@ public class Person {
     String familyName;
     int xLoc, yLoc;
     public int health = 1;
+    public String name;
 
     /**
      * Gets the row the specified Person is in
@@ -55,6 +56,7 @@ public class Person {
         this.familyName = familyName;
         this.xLoc = xLoc;
         this.yLoc = yLoc;
+        this.name = this.firstName.trim() + " " + this.familyName.trim();
     }
 
     /**
@@ -72,5 +74,6 @@ public class Person {
         this.xLoc = xLoc;
         this.yLoc = yLoc;
         this.health = health;
+        this.name = this.firstName.trim() + " " + this.familyName.trim();
     }
 }

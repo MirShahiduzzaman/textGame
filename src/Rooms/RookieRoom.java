@@ -36,8 +36,14 @@ public class RookieRoom extends Room
 
         if(!(x instanceof Monster))
         {
-            System.out.println("You are bombarded with memories and faint for one turn. The horseman has now moved " +
+            System.out.println("\nYou are bombarded with memories and faint for one turn. The horseman has now moved " +
                     "twice!");
+            if(!(food == null))
+            {
+                this.food.gainHealth(x);
+                this.food.foodImp(x);
+                this.food = null;
+            }
         }
     }
 
