@@ -10,8 +10,6 @@ import Board.Board;
 import java.util.Scanner;
 
 public class Runner {
-
-
     private static boolean gameOn = true;
 
     public static void main(String[] args)
@@ -62,8 +60,18 @@ public class Runner {
             }
         }
 
-        Room[][] mansion = new Room[row][column];
-        Board haunt = new Board(mansion);
+        Room[][] mansion;
+        Board haunt;
+        /*if(diffInt == 1)
+        {*/
+            haunt = new Board(row, column);
+            mansion = haunt.map;
+        /*}
+        else
+        {
+            mansion = new Room[row][column];
+            haunt = new Board(mansion);
+        }*/
 
         for (int x = 0; x<mansion.length; x++)
         {
@@ -132,7 +140,7 @@ public class Runner {
         Person player1;
         if(diffInt == 1 || diffInt == 2)
         {
-            player1 = new Person("FirstName", "FamilyName", 0, 0,8);
+            player1 = new Person("FirstName", "FamilyName", 0, 0,(8/diffInt));
         }
         else
         {
@@ -148,14 +156,15 @@ public class Runner {
         int counter;
         int temp;
         String choice;
+        String choice2;
 
         while(gameOn)
         {
-            //counts distance from player and uses it to decide on a way to go
             counter = 0;
             choice = "";
 
-            System.out.println("Where would you like to move? (Choose W, A, S, D)");
+            System.out.println("Where would you like to move? (Choose W, A, S, D) You can also type status to view " +
+                    "your status.");
             String move = in.nextLine();
             if(validMove(move, player1, mansion))
             {
@@ -202,6 +211,7 @@ public class Runner {
 
                 mansion[player1.getxLoc()][player1.getyLoc()].leaveRoom(player1);
 
+
                 if(choice.equals("ne"))
                 {
                     mansion[horseman.getxLoc()-1][horseman.getyLoc()+1].enterRoom(horseman);
@@ -218,6 +228,7 @@ public class Runner {
                 {
                     mansion[horseman.getxLoc()+1][horseman.getyLoc()-1].enterRoom(horseman);
                 }
+
 
                 move = move.toLowerCase().trim();
                 if(move.equals("w"))
@@ -240,21 +251,23 @@ public class Runner {
 
                 if(mansion[player1.getxLoc()][player1.getyLoc()] instanceof RookieRoom)
                 {
+                    choice2 = "";
+
                     if(validMove("ne",horseman,mansion))
                     {
                         counter = Math.abs(horseman.getxLoc()-1 - player1.getxLoc());
                         counter += Math.abs(horseman.getyLoc()+1 - player1.getyLoc());
-                        choice = "ne";
+                        choice2 = "ne";
                     }
                     if(validMove("nw",horseman,mansion))
                     {
                         temp = Math.abs(horseman.getxLoc()-1 - player1.getxLoc());
                         temp += Math.abs(horseman.getyLoc()-1 - player1.getyLoc());
 
-                        if(temp<counter || choice.equals(""))
+                        if(temp<counter || choice2.equals(""))
                         {
                             counter = temp;
-                            choice = "nw";
+                            choice2 = "nw";
                         }
                     }
                     if(validMove("se",horseman,mansion))
@@ -262,10 +275,10 @@ public class Runner {
                         temp = Math.abs(horseman.getxLoc()+1 - player1.getxLoc());
                         temp += Math.abs(horseman.getyLoc()+1 - player1.getyLoc());
 
-                        if(temp<counter || choice.equals(""))
+                        if(temp<counter || choice2.equals(""))
                         {
                             counter = temp;
-                            choice = "se";
+                            choice2 = "se";
                         }
                     }
                     if(validMove("sw",horseman,mansion))
@@ -273,27 +286,27 @@ public class Runner {
                         temp = Math.abs(horseman.getxLoc()+1 - player1.getxLoc());
                         temp += Math.abs(horseman.getyLoc()-1 - player1.getyLoc());
 
-                        if(temp<counter || choice.equals(""))
+                        if(temp<counter || choice2.equals(""))
                         {
-                            choice = "sw";
+                            choice2 = "sw";
                         }
                     }
 
                     mansion[horseman.getxLoc()][horseman.getyLoc()].leaveRoom(horseman);
 
-                    if(choice.equals("ne"))
+                    if(choice2.equals("ne"))
                     {
                         mansion[horseman.getxLoc()-1][horseman.getyLoc()+1].enterRoom(horseman);
                     }
-                    if(choice.equals("nw"))
+                    if(choice2.equals("nw"))
                     {
                         mansion[horseman.getxLoc()-1][horseman.getyLoc()-1].enterRoom(horseman);
                     }
-                    if(choice.equals("se"))
+                    if(choice2.equals("se"))
                     {
-                        mansion[horseman.getxLoc()+1][horseman.getyLoc()+1].enterRoom(horseman);
+                        mansion[horseman.getxLoc() + 1][horseman.getyLoc() + 1].enterRoom(horseman);
                     }
-                    if(choice.equals("sw"))
+                    if(choice2.equals("sw"))
                     {
                         mansion[horseman.getxLoc()+1][horseman.getyLoc()-1].enterRoom(horseman);
                     }
@@ -301,6 +314,11 @@ public class Runner {
 
                 System.out.println(haunt);
                 System.out.println("Your coordinates: row = " + player1.getxLoc() + " col = " + player1.getyLoc());
+                if(player1.health <= 0)
+                {
+                    System.out.println("YOU DIED FROM BEING TOO UNHEALTHY.");
+                    System.exit(0);
+                }
             }
             else
             {

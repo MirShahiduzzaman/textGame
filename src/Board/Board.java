@@ -6,7 +6,7 @@ import Rooms.Room;
 
 public class Board
 {
-    private Room[][] map;
+    public Room[][] map;
 
     /**
      * sets map equal to a 2D array of Rooms
@@ -18,13 +18,13 @@ public class Board
     }
 
     /**
-     * sets map to have the specified height and width
-     * @param height the number of rows in the map
-     * @param width the number of columns in the map
+     * sets map equal to a 2D array of Rooms
+     * @param row number of rows in the board
+     * @param column number of columns in the board
      */
-    public Board(int height,int width)
+    public Board(int row, int column)
     {
-        map = new Room[height][width];
+        map = new Room[row][column];
     }
 
     /**
@@ -40,7 +40,6 @@ public class Board
     public void addFood(int row, int column, Consumable c)
     {
         map[row][column].food = c;
-        System.out.println(map[row][column].food);
     }
 
     /**

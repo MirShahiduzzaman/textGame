@@ -4,10 +4,19 @@ package Consumables;
 import People.Person;
 
 public class Meat implements Consumable{
+    /**
+     * increases Person's health by 5
+     * @param p Person to add health to
+     */
     public void gainHealth(Person p)
     {
         p.health += 5;
     }
+
+    /**
+     * Adds a random number from 0 to 5 to Person health
+     * @param p Person to add health to
+     */
     public void foodImp(Person p)
     {
         int gain = (int)(Math.random()*5);
@@ -16,6 +25,10 @@ public class Meat implements Consumable{
         System.out.println("Health: " + p.health);
     }
 
+    /**
+     * Shows the meat on the map if its in a normal room
+     * @return String meat to represent meat
+     */
     @Override
     public String toString()
     {

@@ -8,11 +8,21 @@ import People.Person;
 // shape
 public class StrategyRoom extends Room
 {
+    /**
+     * Sets up the variables for StrategyRoom
+     * @param x row strategyRoom is in
+     * @param y column strategyRoom is in
+     */
     public StrategyRoom(int x, int y)
     {
         super(x,y);
     }
 
+    /**
+     * Adds 5 health to player for finding and drinking health potion
+     * Checks for whether there are two people in the room, which would mean GAME OVER
+     * @param x the Person entering
+     */
     @Override
     public void enterRoom(Person x) {
         if(!(occupant == null))
@@ -31,12 +41,13 @@ public class StrategyRoom extends Room
             System.out.println("You search through this room for help and find a health potion! Your health went up by 5.");
             x.health += 5;
             System.out.println("Health: " + x.health);
+            enter = true;
         }
     }
 
     /**
-     * Distinguishes the BED in the map
-     * @return String BED to represent BedRoom
+     * Shows the StrategyRoom on the map
+     * @return String STR to represent StrategyRoom or M or P if there is a Person in the Room
      */
     @Override
     public String toString()

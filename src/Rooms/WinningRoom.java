@@ -37,7 +37,7 @@ public class WinningRoom extends Room
 
     /**
      * Distinguishes the WinningRoom on the map
-     * @return String WIN to represent the WinningRoom
+     * @return String WIN to represent the WinningRoom or M or P to represent who is in the Room if there is one
      */
     @Override
     public String toString()

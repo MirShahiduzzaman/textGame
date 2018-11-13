@@ -27,6 +27,7 @@ public abstract class Room
 
     /**
      * Method controls the results when a person enters this room.
+     * Checks for whether there are two people in the room, which would mean GAME OVER
      * @param x the Person entering
      */
     public void enterRoom(Person x)
@@ -69,6 +70,10 @@ public abstract class Room
         strOccupant = null;
     }
 
+    /**
+     * Default return for Room, which is an unknown normal room until the player goes on it
+     * @return ??? or NOR depending on whether the player entered the room and M or P if a Person is in the Room
+     */
     @Override
     public String toString()
     {

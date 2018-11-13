@@ -3,13 +3,17 @@ package Consumables;
 
 import People.Person;
 
-//fill with gainHealth and gainPotent
-//gainHealth increases health or decreases health depends on int value
-//gainPotent increases chance to move twice!
-//Once you move twice 0% potent again
 public interface Consumable
 {
+    /**
+     * increases or decreases health based on the item
+     * @param p Person to add or remove health from
+     */
     void gainHealth(Person p);
+
+    /**
+     * adds or removes a random number from Person health
+     * @param p Person to add or remove health from
+     */
     void foodImp(Person p);
-    //void gainPotent(Person p, int gain);
 }

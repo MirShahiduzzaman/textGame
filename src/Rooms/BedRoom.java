@@ -38,14 +38,13 @@ public class BedRoom extends Room
             enter = true;
             System.out.println("You wake up in the middle of the night and hear a loud noise. It seems to be your " +
                     "horseman. He's behind you, giving you a one move headstart.\nMission: Get to the exit without " +
-                    "getting" +
-                    " caught");
+                    "getting caught\nStarting Point:BED");
         }
     }
 
     /**
-     * Distinguishes the BED in the map
-     * @return String BED to represent BedRoom
+     * Distinguishes the BED in the map and shows if there is a Person in the Bedroom
+     * @return String BED to represent BedRoom or M or P to represent the Person in the Room
      */
     @Override
     public String toString()

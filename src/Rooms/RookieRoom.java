@@ -4,14 +4,23 @@ package Rooms;
 import People.Monster;
 import People.Person;
 
-//wastes ur time
 public class RookieRoom extends Room
 {
+    /**
+     * Sets up the variables for RookieRoom
+     * @param x row RookieRoom is in
+     * @param y column RookieRoom is in
+     */
     public RookieRoom(int x, int y)
     {
         super(x,y);
     }
 
+    /**
+     * Makes the player lose a turn upon entering. Does not affect the monster
+     * Checks for whether there are two people in the room, which would mean GAME OVER
+     * @param x the Person entering
+     */
     @Override
     public void enterRoom(Person x) {
         if(!(occupant == null))
@@ -30,10 +39,12 @@ public class RookieRoom extends Room
             System.out.println("You are bombarded with memories and faint for one turn. The horseman has now moved " +
                     "twice!");
         }
-
-        //make horseman move randomly or else it will be too hard!
     }
 
+    /**
+     * Shows where TRP is and if there's a Person in it, it shows the Person
+     * @return M or P if someone is in the room and TRP if no one is in it
+     */
     @Override
     public String toString()
     {
