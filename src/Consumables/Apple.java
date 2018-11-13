@@ -3,7 +3,6 @@ package Consumables;
 
 import People.Person;
 
-//increase speed
 public class Apple implements Consumable{
     public void gainHealth(Person p)
     {
@@ -11,6 +10,15 @@ public class Apple implements Consumable{
     }
     public void foodImp(Person p)
     {
-        p.health += (int)(Math.random()*5+1);
+        int gain = (int)(Math.random()*5+1);
+        p.health += gain;
+        System.out.println("You ate a healthy apple and gained " + (10 + gain) + " health as a bonus.");
+        System.out.println("Health: " + p.health);
+    }
+
+    @Override
+    public String toString()
+    {
+        return("Apple");
     }
 }

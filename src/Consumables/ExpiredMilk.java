@@ -3,7 +3,6 @@ package Consumables;
 
 import People.Person;
 
-//less buff and less speed
 public class ExpiredMilk implements Consumable{
     public void gainHealth(Person p)
     {
@@ -11,6 +10,15 @@ public class ExpiredMilk implements Consumable{
     }
     public void foodImp(Person p)
     {
-        p.health -= (int)(Math.random()*5 + 11);
+        int loss = (int)(Math.random()*5+11);
+        p.health -= loss;
+        System.out.println("RIP, that milk was expired! You now have a stomachache and as a result, you lost " + (10+loss) + " health.");
+        System.out.println("Health: " + p.health);
+    }
+
+    @Override
+    public String toString()
+    {
+        return("Milk");
     }
 }

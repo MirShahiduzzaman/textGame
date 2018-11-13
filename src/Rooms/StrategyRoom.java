@@ -30,6 +30,7 @@ public class StrategyRoom extends Room
         {
             System.out.println("You search through this room for help and find a health potion! Your health went up by 5.");
             x.health += 5;
+            System.out.println("Health: " + x.health);
         }
     }
 

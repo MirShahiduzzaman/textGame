@@ -3,7 +3,6 @@ package Consumables;
 
 import People.Person;
 
-//makes you buff
 public class Meat implements Consumable{
     public void gainHealth(Person p)
     {
@@ -11,6 +10,15 @@ public class Meat implements Consumable{
     }
     public void foodImp(Person p)
     {
-        p.health += (int)(Math.random()*5);
+        int gain = (int)(Math.random()*5);
+        p.health += gain;
+        System.out.println("You ate some buff meat and gained " + (5+gain) + "health as a bonus.");
+        System.out.println("Health: " + p.health);
+    }
+
+    @Override
+    public String toString()
+    {
+        return("Meat");
     }
 }

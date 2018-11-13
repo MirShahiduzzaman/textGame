@@ -40,6 +40,7 @@ public class Board
     public void addFood(int row, int column, Consumable c)
     {
         map[row][column].food = c;
+        System.out.println(map[row][column].food);
     }
 
     /**

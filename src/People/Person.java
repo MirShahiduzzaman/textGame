@@ -8,7 +8,7 @@ public class Person {
     String firstName;
     String familyName;
     int xLoc, yLoc;
-    public int health;
+    public int health = 1;
 
     /**
      * Gets the row the specified Person is in

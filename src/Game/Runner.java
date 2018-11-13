@@ -80,7 +80,7 @@ public class Runner {
         {
             xRoom = (int)(Math.random()*mansion.length);
             yRoom = (int)(Math.random()*mansion.length);
-            if(mansion[xRoom][yRoom] instanceof BedRoom || mansion[xRoom][yRoom] instanceof RookieRoom || mansion[xRoom][yRoom] instanceof WinningRoom)
+            if(mansion[xRoom][yRoom] instanceof BedRoom || mansion[xRoom][yRoom] instanceof RookieRoom || mansion[xRoom][yRoom] instanceof WinningRoom || xRoom ==1 && yRoom ==1)
             {
                 i--;
             }
@@ -106,7 +106,12 @@ public class Runner {
 
         int randX;
         int randY;
-        Consumable[] foodList = {new Apple(),new Candy(),new ExpiredMilk(),new Meat()};
+        Consumable apple = new Apple();
+        Consumable candy = new Candy();
+        Consumable milk = new ExpiredMilk();
+        Consumable meat = new Meat();
+
+        Consumable[] foodList = {apple,candy,milk,meat};
         for(int i = 0;i<4;i++)
         {
             randX = (int)(Math.random()*mansion.length);

@@ -3,7 +3,6 @@ package Consumables;
 
 import People.Person;
 
-//decrease speed
 public class Candy implements Consumable{
     public void gainHealth(Person p)
     {
@@ -11,6 +10,15 @@ public class Candy implements Consumable{
     }
     public void foodImp(Person p)
     {
-        p.health -= (int)(Math.random()*5);
+        int loss = (int)(Math.random()*5);
+        p.health -= loss;
+        System.out.println("You ate candy and now have cavities. You lost " + (4+loss) + " health as a result.");
+        System.out.println("Health: " + p.health);
+    }
+
+    @Override
+    public String toString()
+    {
+        return("Candy");
     }
 }
